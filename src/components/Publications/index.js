@@ -3,19 +3,33 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 
 import * as usersActions from "../../actions/usersActions";
+import * as publicationsActions from "../../actions/publicationsActions";
 
 const Publications = (props) => {
   useEffect(() => {
-    if (!props.users.length) {
-      props.getUsers();
+    async function fetchData() {
+      if (!props.usersReducer.users.length) {
+        await props.getUsers();
+      }
     }
-  });
+    fetchData();
+    props.getPublicationById(props.match.params.id);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return <div>Publicaciones de {props.match.params.id}</div>;
 };
 
-const mapStateToProps = (reducers) => {
-  return reducers.usersReducer;
+const mapStateToProps = ({ usersReducer, publicationsReducer }) => {
+  return {
+    usersReducer,
+    publicationsReducer,
+  };
 };
 
-export default connect(mapStateToProps, usersActions)(Publications);
+const mapDispatchToProps = {
+  ...usersActions,
+  ...publicationsActions,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Publications);
