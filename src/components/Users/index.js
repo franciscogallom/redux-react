@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { Link } from "react-router-dom";
 
 import { connect } from "react-redux";
 
@@ -25,12 +26,15 @@ const Users = ({ users, getUsers, loading, error }) => {
         </thead>
         <tbody>
           {users ? (
-            users.map((user) => {
+            users.map((user, index) => {
               return (
                 <tr key={user.id}>
                   <td>{user.name}</td>
                   <td>{user.email}</td>
                   <td>{user.website}</td>
+                  <td>
+                    <Link to={`/publications/${index}`}>ver publicaciones</Link>
+                  </td>
                 </tr>
               );
             })
