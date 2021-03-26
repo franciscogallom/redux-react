@@ -7,7 +7,7 @@ import * as usersActions from "../../actions/usersActions";
 const Users = ({ users, getUsers }) => {
   useEffect(() => {
     getUsers();
-  });
+  }, [getUsers]);
 
   return (
     <div className="margin">
