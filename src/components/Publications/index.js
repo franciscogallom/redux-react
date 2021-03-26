@@ -17,7 +17,19 @@ const Publications = (props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return <div>Publicaciones de {props.match.params.id}</div>;
+  return (
+    <div>
+      <h1>Publicaciones de {props.match.params.id}</h1>;
+      {props.publicationsReducer.publications.map((publication) => {
+        return (
+          <div key={publication.id}>
+            <h3>{publication.title}</h3>
+            <p>{publication.body}</p>
+          </div>
+        );
+      })}
+    </div>
+  );
 };
 
 const mapStateToProps = ({ usersReducer, publicationsReducer }) => {
