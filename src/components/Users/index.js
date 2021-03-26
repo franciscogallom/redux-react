@@ -1,18 +1,18 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React from "react";
+// import axios from "axios";
 
-const Users = () => {
-  const [users, setUsers] = useState([]);
+import { connect } from "react-redux";
 
-  useEffect(() => {
-    async function getData() {
-      const response = await axios.get(
-        "https://jsonplaceholder.typicode.com/users"
-      );
-      setUsers(response.data);
-    }
-    getData();
-  });
+const Users = ({ users }) => {
+  // useEffect(() => {
+  //   async function getData() {
+  //     const response = await axios.get(
+  //       "https://jsonplaceholder.typicode.com/users"
+  //     );
+  //     setUsers(response.data);
+  //   }
+  //   getData();
+  // });
 
   return (
     <div className="margin">
@@ -44,4 +44,10 @@ const Users = () => {
   );
 };
 
-export default Users;
+const mapStateToProps = (reducers) => {
+  return reducers.usersReducer;
+};
+
+export default connect(mapStateToProps, {
+  /* Actions */
+})(Users);
