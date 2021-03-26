@@ -1,20 +1,13 @@
-import React from "react";
-// import axios from "axios";
+import React, { useEffect } from "react";
 
 import { connect } from "react-redux";
 
 import * as usersActions from "../../actions/usersActions";
 
-const Users = ({ users }) => {
-  // useEffect(() => {
-  //   async function getData() {
-  //     const response = await axios.get(
-  //       "https://jsonplaceholder.typicode.com/users"
-  //     );
-  //     setUsers(response.data);
-  //   }
-  //   getData();
-  // });
+const Users = ({ users, getUsers }) => {
+  useEffect(() => {
+    getUsers();
+  });
 
   return (
     <div className="margin">
