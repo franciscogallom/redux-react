@@ -3,6 +3,8 @@ import React from "react";
 
 import { connect } from "react-redux";
 
+import * as usersActions from "../../actions/usersActions";
+
 const Users = ({ users }) => {
   // useEffect(() => {
   //   async function getData() {
@@ -48,6 +50,4 @@ const mapStateToProps = (reducers) => {
   return reducers.usersReducer;
 };
 
-export default connect(mapStateToProps, {
-  /* Actions */
-})(Users);
+export default connect(mapStateToProps, usersActions)(Users);
