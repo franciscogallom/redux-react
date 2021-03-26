@@ -1,5 +1,5 @@
 const INITIAL_STATE = {
-  usuarios: [],
+  users: [],
 };
 
 // eslint-disable-next-line import/no-anonymous-default-export
