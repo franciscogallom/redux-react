@@ -4,12 +4,16 @@ import { connect } from "react-redux";
 
 import * as usersActions from "../../actions/usersActions";
 
-const Users = ({ users, getUsers }) => {
+const Users = ({ users, getUsers, loading, error }) => {
   useEffect(() => {
     getUsers();
   }, [getUsers]);
 
-  return (
+  return loading ? (
+    <h1>Cargando...</h1>
+  ) : error ? (
+    <h1>Algo salió mal...</h1>
+  ) : (
     <div className="margin">
       <table className="table">
         <thead>
