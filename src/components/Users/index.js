@@ -7,8 +7,11 @@ import * as usersActions from "../../actions/usersActions";
 
 const Users = ({ users, getUsers, loading, error }) => {
   useEffect(() => {
-    getUsers();
-  }, [getUsers]);
+    if (!users.length) {
+      getUsers();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return loading ? (
     <h1>Cargando...</h1>
