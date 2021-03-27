@@ -73,3 +73,24 @@ export const addTask = (newTask) => async (dispatch) => {
     });
   }
 };
+
+export const editTask = (newTask) => async (dispatch) => {
+  dispatch({
+    type: LOADING,
+  });
+  try {
+    const response = await axios.put(
+      `https://jsonplaceholder.typicode.com/todos/${newTask.id}`,
+      newTask
+    );
+    console.log(response.data);
+    dispatch({
+      type: ADD_TASK,
+    });
+  } catch (error) {
+    dispatch({
+      type: ERROR,
+      payload: error.message,
+    });
+  }
+};

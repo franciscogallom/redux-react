@@ -10,16 +10,20 @@ const Tasks = (props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const showTasks = (id) => {
+  const showTasks = (userId) => {
     const { tasks } = props;
     const userTasks = {
-      ...tasks[id],
+      ...tasks[userId],
     };
 
     return Object.keys(userTasks).map((taskId) => (
       <div key={taskId}>
         <input type="checkbox" defaultChecked={userTasks[taskId].completed} />
         {userTasks[taskId].title}
+        <Link to={`/tasks/save/${userId}/${taskId}`}>
+          <button>Editar</button>
+        </Link>
+        <button>Eliminar</button>
       </div>
     ));
   };

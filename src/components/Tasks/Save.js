@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import { connect } from "react-redux";
 
@@ -14,14 +14,53 @@ const Save = (props) => {
   };
 
   const saveTask = () => {
-    const { user_id, title, addTask } = props;
+    const {
+      match: {
+        params: { userId, taskId },
+      },
+      tasks,
+      user_id,
+      title,
+      addTask,
+      editTask,
+    } = props;
+
     const newTask = {
       userId: user_id,
       title,
       completed: false,
     };
-    addTask(newTask);
+
+    if (userId && taskId) {
+      const task = tasks[userId][taskId];
+      const newEditTask = {
+        ...newTask,
+        completed: task.completed,
+        id: task.id,
+      };
+      editTask(newEditTask);
+    } else {
+      addTask(newTask);
+    }
   };
+
+  useEffect(() => {
+    const {
+      match: {
+        params: { userId, taskId },
+      },
+      tasks,
+      changeUserId,
+      changeTitle,
+    } = props;
+
+    if (userId && taskId) {
+      const task = tasks[userId][taskId];
+      changeUserId(task.userId);
+      changeTitle(task.title);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div>
