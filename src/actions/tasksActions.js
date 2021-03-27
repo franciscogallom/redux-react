@@ -1,6 +1,12 @@
 import axios from "axios";
 
-import { GET_TASKS, LOADING, ERROR } from "../types/tasksTypes";
+import {
+  GET_TASKS,
+  LOADING,
+  ERROR,
+  CHANGE_USER_ID,
+  CHANGE_TITLE,
+} from "../types/tasksTypes";
 
 export const getTasks = () => async (dispatch) => {
   dispatch({
@@ -30,4 +36,18 @@ export const getTasks = () => async (dispatch) => {
       payload: error.message,
     });
   }
+};
+
+export const changeUserId = (id) => async (dispatch) => {
+  dispatch({
+    type: CHANGE_USER_ID,
+    payload: id,
+  });
+};
+
+export const changeTitle = (title) => async (dispatch) => {
+  dispatch({
+    type: CHANGE_TITLE,
+    payload: title,
+  });
 };

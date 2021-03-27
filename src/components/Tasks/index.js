@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 
 import * as tasksActions from "../../actions/tasksActions";
 
@@ -25,6 +26,9 @@ const Tasks = (props) => {
 
   return (
     <div>
+      <Link to="/tasks/save">
+        <button>Agregar</button>
+      </Link>
       {Object.keys(props.tasks).map((userId) => {
         return (
           <div key={userId}>
