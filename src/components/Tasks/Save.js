@@ -13,6 +13,16 @@ const Save = (props) => {
     props.changeTitle(ev.target.value);
   };
 
+  const saveTask = () => {
+    const { user_id, title, addTask } = props;
+    const newTask = {
+      userId: user_id,
+      title,
+      completed: false,
+    };
+    addTask(newTask);
+  };
+
   return (
     <div>
       <h1>Guardar tarea.</h1>
@@ -24,7 +34,7 @@ const Save = (props) => {
       <input type="text" value={props.title} onChange={changeTitle} />
       <br />
       <br />
-      <button>Guardar</button>
+      <button onClick={saveTask}>Guardar</button>
     </div>
   );
 };

@@ -6,6 +6,7 @@ import {
   ERROR,
   CHANGE_USER_ID,
   CHANGE_TITLE,
+  ADD_TASK,
 } from "../types/tasksTypes";
 
 export const getTasks = () => async (dispatch) => {
@@ -38,16 +39,37 @@ export const getTasks = () => async (dispatch) => {
   }
 };
 
-export const changeUserId = (id) => async (dispatch) => {
+export const changeUserId = (id) => (dispatch) => {
   dispatch({
     type: CHANGE_USER_ID,
     payload: id,
   });
 };
 
-export const changeTitle = (title) => async (dispatch) => {
+export const changeTitle = (title) => (dispatch) => {
   dispatch({
     type: CHANGE_TITLE,
     payload: title,
   });
+};
+
+export const addTask = (newTask) => async (dispatch) => {
+  dispatch({
+    type: LOADING,
+  });
+  try {
+    const response = await axios.post(
+      "https://jsonplaceholder.typicode.com/todos",
+      newTask
+    );
+    console.log(response.data);
+    dispatch({
+      type: ADD_TASK,
+    });
+  } catch (error) {
+    dispatch({
+      type: ERROR,
+      payload: error.message,
+    });
+  }
 };

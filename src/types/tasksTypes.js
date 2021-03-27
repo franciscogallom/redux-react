@@ -3,3 +3,4 @@ export const LOADING = "tasks_loading";
 export const ERROR = "tasks_error";
 export const CHANGE_USER_ID = "changeUserId";
 export const CHANGE_TITLE = "changeTitle";
+export const ADD_TASK = "addTask";
