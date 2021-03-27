@@ -11,7 +11,7 @@ const Tasks = (props) => {
   }, []);
 
   const showTasks = (userId) => {
-    const { tasks } = props;
+    const { tasks, deleteTask } = props;
     const userTasks = {
       ...tasks[userId],
     };
@@ -23,11 +23,11 @@ const Tasks = (props) => {
         <Link to={`/tasks/save/${userId}/${taskId}`}>
           <button>Editar</button>
         </Link>
-        <button>Eliminar</button>
+        <button onClick={() => deleteTask(taskId)}>Eliminar</button>
       </div>
     ));
   };
-
+  console.log(props.tasks);
   return (
     <div>
       <Link to="/tasks/save">

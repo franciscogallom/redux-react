@@ -94,3 +94,24 @@ export const editTask = (newTask) => async (dispatch) => {
     });
   }
 };
+
+export const deleteTask = (id) => async (dispatch) => {
+  dispatch({
+    type: LOADING,
+  });
+  try {
+    const response = await axios.delete(
+      `https://jsonplaceholder.typicode.com/todos/${id}`
+    );
+    console.log(response.data);
+    dispatch({
+      type: GET_TASKS,
+      payload: {},
+    });
+  } catch (error) {
+    dispatch({
+      type: ERROR,
+      payload: error.message,
+    });
+  }
+};
